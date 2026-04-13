@@ -43,51 +43,33 @@ const bookStore = {
     ]
 }
 
-// Step 1: Update Existing Element
-// Select the DOM element with the id of 'header'
-const bookStoreTitle = document.getElementById('header');
 
-// Change the textContent to the name property of the bookStore variable
-bookStoreTitle.textContent = bookStore.name;
+const mainHeader = document.querySelector('h1');
+mainHeader.textContent = bookStore.name;
 
-// Step 2: Create New Elements for each book
-// Select the element with the id of 'book-list'
-const bookList = document.getElementById('book-list');
+const container = document.querySelector('#book-list');
 
-// Loop through every book in the books array
 bookStore.books.forEach(book => {
-  // Create an li element called bookContainer
-  const bookContainer = document.createElement('li');
-  
-  // Create an h3 element called bookTitle
-  const bookTitle = document.createElement('h3');
-  // Set bookTitle textContent to the title of the book
-  bookTitle.textContent = book.title;
-  
-  // Create a p element called bookAuthor
-  const bookAuthor = document.createElement('p');
-  // Set bookAuthor textContent to the author of the book
-  bookAuthor.textContent = book.author;
-  
-  // Create an img element called bookImage
-  const bookImage = document.createElement('img');
-  // Set bookImage src to the image url of the book
-  bookImage.src = book.imageUrl;
-  // Set alt text for accessibility
-  bookImage.alt = book.title;
-  
-  // Append bookTitle, bookAuthor, and bookImage to bookContainer
-  bookContainer.appendChild(bookTitle);
-  bookContainer.appendChild(bookAuthor);
-  bookContainer.appendChild(bookImage);
-  
-  // Append bookContainer to bookList
-  bookList.appendChild(bookContainer);
+    
+    const card = document.createElement('div');
+    card.className = 'book-card';
+
+    
+    const title = document.createElement('h2');
+    title.textContent = book.title;
+
+    const author = document.createElement('p');
+    author.textContent = `Author: ${book.author}`;
+
+    const img = document.createElement('img');
+    img.src = book.imageUrl;
+    img.alt = book.title;
+    img.style.width = '150px';
+
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(img);
+    
+    container.appendChild(card);
 });
 
-// BONUS CHALLENGE: Delete Element
-// Delete the element with id of 'delete-this' from the DOM
-const deleteThis = document.getElementById('delete-this');
-if (deleteThis) {
-  deleteThis.remove();
-}
